@@ -12,8 +12,9 @@ import { IntlService } from '@sinequa/core/intl';
 import { LoginService } from '@sinequa/core/login';
 import { AuditEventType, AuditWebService, Record, Results } from '@sinequa/core/web-services';
 import { FacetParams, FACETS, FEATURES, METADATA_CONFIG, PREVIEW_HIGHLIGHTS } from '../../config';
-import { BsFacetDate } from '@sinequa/analytics/timeline';
+import { BsFacetDate, TimelineAggregation } from '@sinequa/analytics/timeline';
 import { MetadataConfig } from '@sinequa/components/metadata';
+
 
 @Component({
   selector: 'app-search',
@@ -22,7 +23,8 @@ import { MetadataConfig } from '@sinequa/components/metadata';
 })
 export class SearchComponent implements OnInit, OnDestroy {
 
-
+  public mychart = {
+  }
   // Document "opened" via a click (opens the preview facet)
   public openedDoc?: Record;
   public passageId?: string;
@@ -53,6 +55,8 @@ export class SearchComponent implements OnInit, OnDestroy {
       ...DEFAULT_FACET_COMPONENTS,
       "date": BsFacetDate
   }
+
+  public aggreg: TimelineAggregation ;
 
   public isDark: boolean;
 
@@ -106,6 +110,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }));
 
     this.subscription.add(this.ui.isDarkTheme$.subscribe(value => this.isDark = value))
+
+    this.aggreg = {
+      aggregation: 'PublicationDate',
+      primary: true,
+  }
   }
 
   ngOnDestroy(): void {

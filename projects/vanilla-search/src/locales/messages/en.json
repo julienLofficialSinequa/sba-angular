@@ -3,6 +3,27 @@
         "name": "Vanilla Search"
     },
 
+    "chart": {
+        "title": "Repartition by platform"
+    },
+
+    "sort": {
+        "ranking": "Ranking",
+        "rankings": "Rankings",
+        "platform": "Platform",
+        "platforms": "Platforms",
+        "duration": "Duration",
+        "durations": "Durations",
+        "url": "Link",
+        "urls": "Links",
+        "journalist": "Journalist",
+        "journalists": "Journalists",
+        "genre": "Genre",
+        "genres": "Genres",
+        "developer": "Developer",
+        "developers": "Developers"
+    },
+
     "locale": {
         "en": "English (United States)",
         "en-gb": "English (United Kingdom)",
@@ -51,13 +72,31 @@
         },
         "labels": {
             "title": "Labels"
+        },
+        "ranking": {
+            "title": "Ranking"
+        },
+        "genres": {
+            "title": "Genres"
+        },
+        "developers": {
+            "title": "Developers"
+        },
+        "origin": {
+            "title": "Origin"
+        },
+        "publicationdate": {
+            "title": "Publication date"
         }
     },
 
     "results": {
         "tabPeople": "People",
         "tabBusiness": "Companies",
-        "tabLocation": "Places"
+        "tabLocation": "Places",
+        "results_games": "Games",
+        "results_movies": "Movies",
+        "results_tv": "TV Shows"
     },
 
     "home": {

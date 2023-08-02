@@ -52,25 +52,44 @@
         <!-- Left facet bar -->
         <!-- sqSticky to update if you change the header sizing -->
         <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2 sq-facet-bar" *ngIf="showFilters" [sqSticky]="{top: 105, bottom: 10}">
-            <!-- Source facet -->
-            <sq-facet-card [title]="'msg#facet.treepath.title'" icon="fas fa-sitemap" [collapsible]="false"
-                class="mb-3">
-                <sq-facet-list #facet [results]="results" [aggregation]="'Treepath'"></sq-facet-list>
-            </sq-facet-card>
-
             <!-- Other metadata -->
-            <sq-facet-card [collapsible]="false" class="mb-3">
+            <sq-facet-card [title]="'msg#facet.origin.title'" [collapsible]="false" class="mb-3">
+                <sq-facet-list #facet [results]="results" [aggregation]="'origin'"></sq-facet-list>
+            </sq-facet-card>
+            
+            <sq-facet-card [collapsible]="true" class="mb-3">
                 <sq-facet-multi #facet
                     [results]="results"
                     [facets]="facets"
                     [facetComponents]="facetComponents">
                 </sq-facet-multi>
             </sq-facet-card>
+
+            <sq-facet-card [title]="'msg#facet.ranking.title'" [collapsible]="true" [startCollapsed]="true" class="mb-3">
+                <sq-facet-range #facet [results]="results" [aggregation]="'ranking'" [min]="0" [max]="10"></sq-facet-range>
+            </sq-facet-card>
+
+            <sq-facet-card [title]="'msg#facet.genres.title'" [collapsible]="true" [startCollapsed]="true" class="mb-3">
+                <sq-facet-list #facet [results]="results" [aggregation]="'genres'"></sq-facet-list>
+            </sq-facet-card>
+            
+            <sq-facet-card [title]="'msg#facet.developers.title'" [collapsible]="true" [startCollapsed]="true" class="mb-3">
+                <sq-facet-list #facet [results]="results" [aggregation]="'developers'"></sq-facet-list>
+            </sq-facet-card>
+
+            <sq-facet-card [title]="'msg#facet.emotions.title'" [collapsible]="true" [startCollapsed]="true" class="mb-3">
+                <sq-facet-list #facet [results]="results" [aggregation]="'emotions'"></sq-facet-list>
+            </sq-facet-card>
+
+            <sq-facet-card [title]="'msg#facet.publicationdate.title'" [collapsible]="true" class="mb-3">
+                <sq-facet-timeline [timeseries]="[aggreg]" [results]="results"></sq-facet-timeline>
+            </sq-facet-card>
+            
         </div>
 
         <!-- Results -->
         <div class="col-sm-12 col-lg-5" [ngClass]="{'col-md-8': showFilters, 'col-md-6': !showFilters}" *ngIf="showResults">
-
+            <app-query-intent-people class="mb-2 d-block"></app-query-intent-people>
             <div class="result-toolbar d-flex flex-wrap">
 
                 <!-- Tabs -->
@@ -119,12 +138,26 @@
                     'duplicate': record.$isDuplicate
                   }">
                     <sq-result-duplicates-spacer [record]="record"></sq-result-duplicates-spacer>
+                   
                     <div class="flex-grow-1">
                         <div class="d-flex align-items-center">
                             <sq-result-selector class="d-none d-md-block" [record]="record"></sq-result-selector>
+                            <sq-metadata-item [record]="record" [field]="'ranking'" [fieldClass]="'bg-info opacity-50 me-2 badge rounded-pill bg-secondary'"></sq-metadata-item>
                             <sq-result-title [record]="record" (titleClicked)="openPreviewIfNoUrl(record, $event)"></sq-result-title>
                         </div>
-                        <sq-result-source [record]="record" [displayTreepath]="true"></sq-result-source>
+                        <div class="ms-4">
+                            <sq-metadata-item [record]="record" [field]="'platform'" [label]="'msg#sort.platform'"></sq-metadata-item>
+                        </div>
+                        <div class="ms-4">
+                            <sq-metadata-item [record]="record" [field]="'duration'" [label]="'msg#sort.duration'"></sq-metadata-item>
+                        </div>
+                        <div class="ms-4">
+                            <sq-metadata-item [record]="record" [field]="'journalist'" [label]="'msg#sort.journalist'"></sq-metadata-item>
+                        </div>
+                        <div class="ms-4">
+                            <sq-metadata-item [record]="record" [field]="'emotions'" [label]="'msg#sort.emotion'"></sq-metadata-item>
+                        </div>
+                        <sq-result-source [record]="record" [displayTreepath]="false"></sq-result-source>
                         <sq-result-extracts [record]="record" class="d-block overflow-hidden"></sq-result-extracts>
                         <sq-result-missing-terms [record]="record"></sq-result-missing-terms>
 
@@ -149,6 +182,17 @@
         <!-- Right part-->
         <!-- sqSticky to update if you change the header sizing -->
         <div class="col-sm-12 col-lg-4 col-xl-5" [ngClass]="{'col-md-6': !showFilters}"  [sqSticky]="{top: 105, bottom: 10}">
+
+            <div class="my-2">
+                <sq-facet-card [icon]="'fas fa-chart-line'" [title]="'msg#chart.title'">
+                    <sq-fusion-chart  #facet [type]="'doughnut3d'" [chart]="[this.mychart]" [results]="results" [aggregation]="'platform'" height="200"></sq-fusion-chart>
+                </sq-facet-card>
+            </div>
+            <!-- <div class="my-2">
+                <sq-facet-card [icon]="'fas fa-th'" [title]="'Heatmap'">
+                    <sq-facet-heatmap #facet [results]="results" [fieldX]="'genres'" [fieldY]="'journalist'" [fieldsX]="['platform', 'journalist', 'ranking', 'company']" [fieldsY]="['platform', 'journalist', 'ranking', 'company']" height="200"></sq-facet-heatmap>
+                </sq-facet-card>
+            </div> -->
 
             <!-- Without selected document -->
             <!-- hidden only on md resolution -->

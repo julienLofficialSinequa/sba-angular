@@ -1,0 +1,7 @@
+<sq-facet-card
+  *ngIf="queryIntentService.journalistData | async; let results"
+  [title]="queryIntentService.journalist"
+  [icon]="'fas fa-user'"
+>
+<sq-facet-list #facet [results]="results" [aggregation]="'Platform'" [showCount]="false" [searchable]="false"></sq-facet-list>
+</sq-facet-card>

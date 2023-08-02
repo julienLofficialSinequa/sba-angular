@@ -12,7 +12,7 @@ import { LoginModule, LoginInterceptor, TeamsInitializer, AuthenticationService 
 import { IntlModule } from "@sinequa/core/intl";
 import { ModalModule } from "@sinequa/core/modal";
 import { NotificationsInterceptor } from "@sinequa/core/notification";
-import { AuditInterceptor } from "@sinequa/core/app-utils";
+//import { AuditInterceptor } from "@sinequa/core/app-utils";
 
 // @sinequa/components library
 import { BsSearchModule, SearchOptions } from "@sinequa/components/search";
@@ -36,6 +36,15 @@ import { MLModule } from '@sinequa/components/machine-learning';
 import { SearchFormComponent } from "@sinequa/components/search-form";
 import { FiltersModule } from "@sinequa/components/filters";
 
+import { FusionChartsModule } from '@sinequa/analytics/fusioncharts';
+import * as FusionCharts from "fusioncharts";
+import * as charts from "fusioncharts/fusioncharts.charts";
+// Fusion is a light theme, Candy is a dark theme
+import * as FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+import * as CandyTheme from "fusioncharts/themes/fusioncharts.theme.candy";
+import { BsHeatmapModule } from '@sinequa/analytics/heatmap';
+import { BsTimelineModule } from '@sinequa/analytics/timeline';
+
 // Components
 import { AppComponent } from "./app.component";
 import { HomeComponent } from './home/home.component';
@@ -52,9 +61,9 @@ import { HELP_DEFAULT_FOLDER_OPTIONS } from "../config";
 
 // Initialization of @sinequa/core
 export const startConfig: StartConfig = {
-    app: "training",
+    app: "GamesApp",
     production: environment.production,
-    autoSAMLProvider: environment.autoSAMLProvider,
+    // autoSAMLProvider: environment.autoSAMLProvider,
     auditEnabled: true
 };
 
@@ -85,6 +94,8 @@ import {LocalesConfig, Locale} from "@sinequa/core/intl";
 import enLocale from "../locales/en";
 import frLocale from "../locales/fr";
 import deLocale from "../locales/de";
+import { QueryIntentPeopleComponent } from './query-intent-people/query-intent-people.component';
+import { CustomAuditInterceptor } from "./customAuditInterceptor";
 
 export class AppLocalesConfig implements LocalesConfig {
     defaultLocale: Locale;
@@ -142,6 +153,9 @@ export const breakpoints = {
         MLModule,
         FiltersModule,
         SearchFormComponent,
+        FusionChartsModule.forRoot(FusionCharts, charts, FusionTheme, CandyTheme),
+        BsHeatmapModule,
+        BsTimelineModule,
     ],
     declarations: [
         AppComponent,
@@ -149,7 +163,8 @@ export const breakpoints = {
         SearchComponent,
         PreviewComponent,
         AppSearchFormComponent,
-        AutocompleteComponent
+        AutocompleteComponent,
+        QueryIntentPeopleComponent,
     ],
     providers: [
         // Provides an APP_INITIALIZER which will fetch application configuration information from the Sinequa
@@ -172,7 +187,7 @@ export const breakpoints = {
         // Provides an HttpInterceptor that offers a centralized location through which all client-side
         // audit records pass. An application can replace AuditInterceptor with a subclass that overrides
         // the updateAuditRecord method to add custom audit information to the records.
-        {provide: HTTP_INTERCEPTORS, useClass: AuditInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: CustomAuditInterceptor, multi: true},
 
         // Provides an HttpInterceptor that automatically processes any notifications specified in the $notifications
         // member of the response body to any Sinequa web service requests.

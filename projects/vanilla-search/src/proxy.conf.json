@@ -5,7 +5,6 @@
         "/saml/redirect",
         "/r"
     ],
-    "target": "https://vm-su-sba.sinequa.com:13343",
-    "secure": true,
+    "target": "http://localhost",
     "changeOrigin": true
 }
