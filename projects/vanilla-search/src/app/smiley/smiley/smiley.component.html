@@ -1,0 +1,36 @@
+<ng-container *ngIf="metadataValue.valueItems.length > 0" class="align-self-end">
+    <span [ngSwitch]="finalValue" title="{{finalValue}}" style="font-size: 30pt" class="opacity-50">
+        <span *ngSwitchCase="'Admiration'">🤩</span>
+        <span *ngSwitchCase="'Amusement'">😃</span>
+        <span *ngSwitchCase="'Approval'">👍</span>
+        <span *ngSwitchCase="'Desire'">🤤</span>
+        <span *ngSwitchCase="'Excitement'">😍</span>
+        <span *ngSwitchCase="'Gratitude'">🤗</span> 
+        <span *ngSwitchCase="'Joy'">😁</span> 
+        <span *ngSwitchCase="'Love'">😍</span> 
+        <span *ngSwitchCase="'Optimism'">😃</span> 
+        <span *ngSwitchCase="'Pride'">😃</span> 
+        <span *ngSwitchCase="'Realization'">😃</span> 
+        <span *ngSwitchCase="'Relief' ">😌</span>
+
+        <span *ngSwitchCase="'Fear'">😨</span>
+        <span *ngSwitchCase="'Anger'">😠</span>
+        <span *ngSwitchCase="'Annoyance'">😒</span>
+        <span *ngSwitchCase="'Disappointment'">😒</span>
+        <span *ngSwitchCase="'Disapproval'">😒</span>
+        <span *ngSwitchCase="'Disgust'">🤮</span>
+        <span *ngSwitchCase="'Embarrassment'">😒</span>
+        <span *ngSwitchCase="'Grief'">😒</span>
+        <span *ngSwitchCase="'Nervousness'">😬</span>
+        <span *ngSwitchCase="'Remorse'">😢</span>
+        <span *ngSwitchCase="'Sadness'">😢</span> 
+
+        <span *ngSwitchCase="'Confusion'">😕</span>
+        <span *ngSwitchCase="'Curiosity'">🤔</span>
+        <span *ngSwitchCase="'Surprise'">😮</span>
+
+        <span *ngSwitchCase="'Caring'">🥕</span>
+
+        <span *ngSwitchCase="'Neutral'">😐</span>
+    </span>
+</ng-container>

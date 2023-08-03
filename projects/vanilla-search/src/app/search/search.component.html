@@ -154,9 +154,6 @@
                         <div class="ms-4">
                             <sq-metadata-item [record]="record" [field]="'journalist'" [label]="'msg#sort.journalist'"></sq-metadata-item>
                         </div>
-                        <div class="ms-4">
-                            <sq-metadata-item [record]="record" [field]="'emotions'" [label]="'msg#sort.emotion'"></sq-metadata-item>
-                        </div>
                         <sq-result-source [record]="record" [displayTreepath]="false"></sq-result-source>
                         <sq-result-extracts [record]="record" class="d-block overflow-hidden"></sq-result-extracts>
                         <sq-result-missing-terms [record]="record"></sq-result-missing-terms>
@@ -166,6 +163,7 @@
 
                         <sq-result-duplicates [record]="record"></sq-result-duplicates>
                     </div>
+                    <app-smiley [record]="record" [field]="'emotions'" [label]="'msg#sort.emotion'"></app-smiley>
                     <sq-result-thumbnail [record]="record" [thumbnailColumn]="'sourcevarchar4'" [linkBehavior]="false"
                         class="d-none d-sm-block align-self-center ms-3">
                     </sq-result-thumbnail>

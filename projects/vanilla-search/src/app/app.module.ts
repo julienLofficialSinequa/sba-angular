@@ -96,6 +96,7 @@ import frLocale from "../locales/fr";
 import deLocale from "../locales/de";
 import { QueryIntentPeopleComponent } from './query-intent-people/query-intent-people.component';
 import { CustomAuditInterceptor } from "./customAuditInterceptor";
+import { SmileyComponent } from './smiley/smiley/smiley.component';
 
 export class AppLocalesConfig implements LocalesConfig {
     defaultLocale: Locale;
@@ -165,6 +166,7 @@ export const breakpoints = {
         AppSearchFormComponent,
         AutocompleteComponent,
         QueryIntentPeopleComponent,
+        SmileyComponent,
     ],
     providers: [
         // Provides an APP_INITIALIZER which will fetch application configuration information from the Sinequa

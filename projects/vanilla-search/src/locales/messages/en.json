@@ -21,7 +21,9 @@
         "genre": "Genre",
         "genres": "Genres",
         "developer": "Developer",
-        "developers": "Developers"
+        "developers": "Developers",
+        "emotion": "Emotion",
+        "emotions": "Emotions"
     },
 
     "locale": {
@@ -87,6 +89,9 @@
         },
         "publicationdate": {
             "title": "Publication date"
+        },
+        "emotions": {
+            "title": "Emotions"
         }
     },
 
