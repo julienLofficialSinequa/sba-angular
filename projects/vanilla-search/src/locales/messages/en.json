@@ -1,10 +1,28 @@
 {
+    "metadata": {
+        "entity3PluralLabel" : "[NER] Person",
+        "entity4PluralLabel" : "[NER] Companies",
+        "entity5PluralLabel" : "[NER] Locations",
+        "entity6PluralLabel" : "[NER] Miscellaneous"
+    },
     "app": {
         "name": "Vanilla Search"
     },
 
     "chart": {
         "title": "Repartition by platform"
+    },
+
+    "PDF": {
+        "seulementPDF": "PDF uniquement",
+        "tousTypes": "Tous types de documents",
+        "title": "PDF uniquement"
+    },
+
+    "docperime": {
+        "avecDocumentPerime": "Avec documents périmés",
+        "sansDocumentPerime": "Sans documents périmés",
+        "title": "Documents périmés"
     },
 
     "sort": {

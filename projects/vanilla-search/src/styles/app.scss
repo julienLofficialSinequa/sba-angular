@@ -31,3 +31,34 @@ $navbar-padding-y: 1.25rem;
 
 // SBA components custom CSS overrides
 @import "vanilla";
+
+.timeline-all-tab {
+    svg {
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        margin-right:1rem;
+    }
+    .tooltip-item{
+        max-width:25rem !important;
+    }
+    .text-truncate {
+        white-space: normal!important;
+    }
+    .x.axis {
+        text {
+            fill: black !important;
+            font-size: 1.5rem;
+        }
+    }
+    .y.axis {
+        text {
+            fill: black !important;
+            font-size: 1.1rem;
+        }
+    }
+    text.tooltip-text,
+    text.grip-text {
+        font-size: 1.5rem !important;
+        fill: black !important;
+    }
+}

@@ -60,10 +60,17 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public isDark: boolean;
 
+  public onlyPDF: boolean;
+  public docPerime: boolean;
+
   @ViewChild("previewFacet") previewFacet: BsFacetCard;
   @ViewChild("passagesList", {read: FacetViewDirective}) passagesList: FacetViewDirective;
 
   private subscription = new Subscription();
+
+  public currentDate = new Date(); // today
+  public minAggregationDate = new Date("1990-01-01 00:00:00");
+  public minDate = new Date();
 
   constructor(
     private previewService: PreviewService,
@@ -76,6 +83,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     public loginService: LoginService,
     public auditService: AuditWebService,
   ) {
+
+    this.minDate.setFullYear(this.currentDate.getFullYear() -1 );
 
     const expandAction = new Action({
       icon: "fas fa-fw fa-expand-alt",
@@ -142,6 +151,23 @@ export class SearchComponent implements OnInit, OnDestroy {
           }
         })
       );
+
+      this.onlyPDF = true;
+      this.docPerime = false;
+  }
+
+  toggleOnlyPDF() {
+    console.log(this.onlyPDF);
+    
+    this.onlyPDF = !this.onlyPDF;
+    this.searchService.query['onlyPDF'] = this.onlyPDF;
+    this.searchService.search();
+  }
+
+  toggleDocPerime() {
+    this.docPerime = !this.docPerime;
+    this.searchService.query['docPerime'] = this.docPerime;
+    this.searchService.search();
   }
 
   /**

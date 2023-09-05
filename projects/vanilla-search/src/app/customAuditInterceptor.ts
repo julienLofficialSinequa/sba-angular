@@ -3,7 +3,8 @@ import { AuditInterceptor } from '@sinequa/core/app-utils';
 import { AuditRecord, StartConfig, START_CONFIG } from '@sinequa/core/web-services';
 import { SearchService } from '@sinequa/components/search';
 import { LoginService } from '@sinequa/core/login';
- 
+import { UserPreferences } from '@sinequa/components/user-settings';
+
 @Injectable({
     providedIn: "root"
 })
@@ -12,20 +13,17 @@ export class CustomAuditInterceptor extends AuditInterceptor {
     constructor(
         @Inject(START_CONFIG) startConfig: StartConfig,
         public searchService: SearchService,
-        public loginService: LoginService)
+        public loginService: LoginService,
+        public prefs: UserPreferences)
         {
         super(startConfig);
     }
  
     protected override updateAuditRecord(auditRecord?: AuditRecord) {
         auditRecord?.auditEvents?.forEach(event => {
-                const country = this.loginService.principal?.param6;
-                const department = this.loginService.principal?.param4;
-                const city = this.loginService.principal?.param5;
+                const country = this.prefs.get("user-country");
                 if (event.detail != null) {
                     event.detail.country = country;
-                    event.detail.department = department;
-                    event.detail.city = city;
                 }
         });
     }

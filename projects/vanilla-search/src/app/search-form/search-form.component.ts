@@ -2,6 +2,8 @@ import { Component, Input, ViewChild } from "@angular/core";
 import { SearchService } from "@sinequa/components/search";
 import { Query } from "@sinequa/core/app-utils";
 import { SearchFormComponent } from "@sinequa/components/search-form";
+import { UserPreferences } from '@sinequa/components/user-settings';
+
 
 @Component({
   selector: 'app-search-form',
@@ -36,8 +38,11 @@ export class AppSearchFormComponent {
   @ViewChild("searchForm") searchForm: SearchFormComponent;
 
   constructor(
-    public searchService: SearchService
-  ) {}
+    public searchService: SearchService,
+    public prefs: UserPreferences
+  ) {
+    this.setUserCountry();
+  }
 
   onAutocompleteSearch(text: string, query: Query) {
     query.text = text;
@@ -46,6 +51,19 @@ export class AppSearchFormComponent {
 
   onAutocompleteSelect(text: string, query: Query) {
     query.text = text;
+  }
+
+  
+
+  setUserCountry() {
+    if(!this.prefs.get("user-country") || this.prefs.get("user-country") === "") {
+      fetch('https://api.geoapify.com/v1/ipinfo?apiKey=b1b2ecfd4fa647dcb193957d5dd42b22')
+      .then(response => response.json())
+      .then(data => {
+        this.prefs.set("user-country", data?.country?.name);
+      })
+    }
+    
   }
 
 }

@@ -180,6 +180,26 @@ export const PREVIEW_HIGHLIGHTS: PreviewHighlightColors[] = [
         name: 'matchlocations',
         color: 'black',
         bgColor: '#ff0'
+    },
+    {
+        name: 'entity3',
+        color: 'white',
+        bgColor: '#22B14C'
+    },
+    {
+        name: 'entity4',
+        color: 'white',
+        bgColor: '#8E403A'
+    },
+    {
+        name: 'entity5',
+        color: 'white',
+        bgColor: '#0023F5'
+    },
+    {
+        name: 'entity6',
+        color: 'white',
+        bgColor: '#367E7F'
     }
 ];
 

@@ -124,3 +124,30 @@ main,
         transform: none;
     }
 }
+
+.seulementpdf-enabled {
+    font-weight: bold;
+    font-size: small;
+}
+
+.seulementpdf-disabled {
+    font-weight: normal;
+    font-size: small;
+}
+
+.docperime-enabled {
+    text-decoration: normal;
+    font-size: small;
+}
+
+.docperime-disabled {
+    text-decoration: line-through;
+    font-size: small;
+}
+
+.extraIcons {
+    display: flex;
+    white-space: nowrap;
+    margin-top: 50px;
+    margin-left: 40px;
+}
